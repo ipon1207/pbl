@@ -1,4 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
+<?php
 session_start();
 
 // セッションにユーザー名が存在しない場合、ログインページにリダイレクト

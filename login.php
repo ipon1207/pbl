@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         // パスワードの検証
         if (password_verify($password, $row['password'])) {
+            // set ID
+            $_SESSION['id'] = $row['id'];
             // セッションにユーザー名を保存
             $_SESSION['username'] = $username;
             header("Location: main.php");
