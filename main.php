@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="add_appointment.php">面談日程追加</a>
         <a href="talk.php">チャット</a>
         <?php if ($attribute == 1) || ($attribute==3): ?>
-            <a href="setting.php">Setting</a>
+            <a href="setting.php">設定</a>
         <?php endif; ?>
         <a href="logout.php">ログアウト</a>
     </div>

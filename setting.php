@@ -88,6 +88,19 @@ $stmt->close();
         <a href="setting.php">Setting</a>
         <a href="logout.php">ログアウト</a>
     </div>
+
+    <h1>紐づけ</h1>
+    <form method="post" action="link_parent_student.php">
+        <label for="student_id">Select Student:</label>
+        <select name="student_id" required>
+            <?php while($row = $result->fetch_assoc()): ?>
+                <option value="<?php echo $row['id']; ?>"><?php echo $row['username']; ?></option>
+            <?php endwhile; ?>
+        </select><br>
+        <button type="submit">Link</button>
+    </form>
+
+
 </body>
 </html>
 
