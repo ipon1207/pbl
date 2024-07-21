@@ -89,19 +89,19 @@ $students = $conn->query($sql);
         <?php endif; ?>
         <a href="add_appointment.php">面談日程追加</a>
         <a href="talk.php">チャット</a>
-        <a href="setting.php">Setting</a>
+        <a href="setting.php">設定</a>
         <a href="logout.php">ログアウト</a>
     </div>
 
     <h1>紐づけ</h1>
     <form method="post" action="link_parent_student.php">
-        <label for="student_id">Select Student:</label>
+        <label for="student_id">生徒を選択してください</label>
         <select name="student_id" required>
             <?php while($row = $students->fetch_assoc()): ?>
                 <option value="<?php echo $row['id']; ?>"><?php echo $row['username']; ?></option>
             <?php endwhile; ?>
         </select><br>
-        <button type="submit">Link</button>
+        <button type="submit">確定</button>
     </form>
 
 
