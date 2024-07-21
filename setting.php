@@ -2,7 +2,7 @@
 session_start();
 
 // セッションにユーザー名が存在しない場合、ログインページにリダイレクト
-if (!isset($_SESSION['username'])) {
+if ((!isset($_SESSION['username'])) || $_SESSION['attribute'] != 3) {
     header("Location: login.php");
     exit;
 }
@@ -24,9 +24,16 @@ if ($conn->connect_error) {
 
 // if POST is sent
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $partner = $_POST["partner"];
+    $parent_id = $_SESSION['id'];
+    $student_id = $POST['student_id'];
 
-    $sql = "";
+    $sql = "INSERT INTO parents_students (parent_id, student_id) VALUES ('$parent_id', '$student_id')";
+
+    if ($conn->query($sql) == TRUE) {
+        echo "OK";
+    } else {
+        echo "NO";
+    }
 }
 
 
@@ -94,7 +101,7 @@ $students = $conn->query($sql);
     </div>
 
     <h1>紐づけ</h1>
-    <form method="post" action="link_parent_student.php">
+    <form method="post" action="seting.php">
         <label for="student_id">生徒を選択してください</label>
         <select name="student_id" required>
             <?php while($row = $students->fetch_assoc()): ?>
