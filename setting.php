@@ -21,6 +21,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
+// if POST is sent
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $partner = $_POST["partner"];
+
+    $sql = "";
+}
+
+
+
+
+
 // ユーザー情報の取得
 $username = $_SESSION['username'];
 $sql = "SELECT attribute FROM accounts WHERE username = ?";
