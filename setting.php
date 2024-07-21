@@ -46,6 +46,10 @@ $attribute = $row['attribute'];
 $stmt->close();
 
 
+$sql = "SELECT id, username FROM accounts WHERE attribute=2";
+$students = $conn->query($sql);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +97,7 @@ $stmt->close();
     <form method="post" action="link_parent_student.php">
         <label for="student_id">Select Student:</label>
         <select name="student_id" required>
-            <?php while($row = $result->fetch_assoc()): ?>
+            <?php while($row = $students->fetch_assoc()): ?>
                 <option value="<?php echo $row['id']; ?>"><?php echo $row['username']; ?></option>
             <?php endwhile; ?>
         </select><br>
