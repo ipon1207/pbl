@@ -216,6 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="add_event.php">イベント追加</a>
         <?php endif; ?>
         <a href="add_appointment.php">面談日程追加</a>
+        <a href="talk.php">Chat</a>
         <a href="logout.php">ログアウト</a>
     </div>
     
