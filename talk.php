@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="conversation-window">
             <div class="header">
-                <a href="main.php" class="back-button">戻る</a>
+                <a href="index.php" class="back-button">戻る</a>
                 <h2>会話</h2>
             </div>
             <div class="messages">
