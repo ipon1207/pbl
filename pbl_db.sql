@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- ホスト: 127.0.0.1
--- 生成日時: 2024-07-08 02:02:56
--- サーバのバージョン： 10.4.32-MariaDB
--- PHP のバージョン: 8.2.12
+-- Host: localhost
+-- Generation Time: Jul 21, 2024 at 03:50 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- データベース: `pbl_db`
+-- Database: `pbl_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `accounts`
+-- Table structure for table `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -36,7 +36,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- テーブルのデータのダンプ `accounts`
+-- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `attribute`, `email`) VALUES
@@ -44,12 +44,17 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `attribute`, `email`) VALU
 (2, 'test1', '$2y$10$.0Zyj3eLZzCQZ7scQnzox.k2i5BFm6yf9PwzRusxsx1mTBG47LZhi', 0, 'test1@test1.email.com'),
 (3, 'test2', '$2y$10$i5UTRlBlPBndwjbKKrxbRuXcCw2cp.2.GUmtWuUmTLbGjDReTXJ2i', 1, 'test2@test2.email.com'),
 (4, 'parent1', '$2y$10$jCNwhBR3rwAPB3uEWTx90.abktcsdu82Tx0Ueom9rUiYTxjhW9aGW', 3, 'parent1@parent1.email'),
-(5, 'teacher1', '$2y$10$O21y6/.L3XQsA0ng4eLKT.3PTeOQloTfQR8.aD0B34W7UZ9vXpPQS', 1, 'teacher1@teacher1');
+(5, 'teacher1', '$2y$10$O21y6/.L3XQsA0ng4eLKT.3PTeOQloTfQR8.aD0B34W7UZ9vXpPQS', 1, 'teacher1@teacher1'),
+(6, 'teacher', '$2y$10$Kj68KwNhIsSENhcHDTWkh.WCJJw6PP0MtZoZ5Pb1GVrFkN5yyu4ji', 1, 'teacher@teacher.com'),
+(7, 'student', '$2y$10$7fClxBwlmWoa0ONKHChCi.n/zzyF7dLrxybnF79ES4e3Byof4YIkq', 2, 'student@student'),
+(8, 'student01', '$2y$10$1rXOAeczkkB5GbjN2XnRg.6GqUHeum62iqysFSQkOCRINzkLr27ai', 2, 'student01@student01'),
+(9, 'student02', '$2y$10$9SlwxkKyJAQFeF/8ws4eW.3YgTyVTYJ9KLIdbDzivlTJrZ0xfBE1y', 2, 'student02@student02'),
+(10, 'parent', '$2y$10$qrE.gBTYZt1eamO7cnH2eu9hRjpk5fmb5jr8ciZOmRdhirXtoSVGy', 3, 'parent@parent');
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `appointments`
+-- Table structure for table `appointments`
 --
 
 CREATE TABLE `appointments` (
@@ -62,7 +67,7 @@ CREATE TABLE `appointments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- テーブルのデータのダンプ `appointments`
+-- Dumping data for table `appointments`
 --
 
 INSERT INTO `appointments` (`id`, `parent_username`, `teacher_username`, `date`, `time`, `status`) VALUES
@@ -71,7 +76,7 @@ INSERT INTO `appointments` (`id`, `parent_username`, `teacher_username`, `date`,
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `schedules`
+-- Table structure for table `schedules`
 --
 
 CREATE TABLE `schedules` (
@@ -83,55 +88,55 @@ CREATE TABLE `schedules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- テーブルのデータのダンプ `schedules`
+-- Dumping data for table `schedules`
 --
 
 INSERT INTO `schedules` (`id`, `username`, `event`, `date`, `time`) VALUES
-(1, 'test', '運動会', '2024-07-09', '07:00:00'),
+(1, 'test', 'kjno', '2024-07-09', '07:00:00'),
 (2, 'test', '文化祭', '2024-09-18', '08:00:00'),
 (3, 'test1', '運動会', '2024-07-15', '15:19:00'),
 (4, 'teacher', '面談', '2024-07-09', '18:41:46');
 
 --
--- ダンプしたテーブルのインデックス
+-- Indexes for dumped tables
 --
 
 --
--- テーブルのインデックス `accounts`
+-- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- テーブルのインデックス `appointments`
+-- Indexes for table `appointments`
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`);
 
 --
--- テーブルのインデックス `schedules`
+-- Indexes for table `schedules`
 --
 ALTER TABLE `schedules`
   ADD PRIMARY KEY (`id`);
 
 --
--- ダンプしたテーブルの AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- テーブルの AUTO_INCREMENT `accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- テーブルの AUTO_INCREMENT `appointments`
+-- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- テーブルの AUTO_INCREMENT `schedules`
+-- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
