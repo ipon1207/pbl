@@ -114,6 +114,9 @@ if ($attribute == 1) {
     }
 }
 
+// 選択された会話相手を取得
+$selectedUser = isset($_GET['user']) ? $_GET['user'] : '';
+
 // フォームから送信されたデータを取得
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // POSTデータの存在チェックとデフォルト値の設定
@@ -121,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student = isset($_POST['student']) ? $_POST['student'] : '';
     $chat = isset($_POST['chat']) ? $_POST['chat'] : '';
     $attribute = isset($_POST['attribute']) ? intval($_POST['attribute']) : 0;
-    $sent_user = $_POST['sent_user']; // 現在のユーザーIDを設定
+    $sent_user = $_POST['sent_user'];
 
     // データが空でないことを確認
     if (!empty($teacher) && !empty($student) && !empty($chat) && $attribute > 0) {
@@ -312,7 +315,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="messages">
                 <?php
                 // 会話の表示
-                $selectedUser = isset($_GET['user']) ? $_GET['user'] : '';
                 if ($selectedUser) {
                     // データベースから会話を取得して表示
                     $sql = "SELECT c.time, c.teacher, c.student, c.chat, c.attribute, c.sent_user
@@ -369,7 +371,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </div>
             <div class="chat-input">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo $_SERVER['PHP_SELF'] . '?user=' . $selectedUser; ?>" method="post" enctype="multipart/form-data">
                     <input type="text" name="chat" placeholder="メッセージを入力">
                     <input type="file" name="attachment" id="attachment">
                     <label for="attachment">ファイル選択</label>
@@ -397,6 +399,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             toggleButton.style.left = '20%';
         }
     }
+
+    // 会話履歴を一番下にスクロール
+    const messagesDiv = document.querySelector('.messages');
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
 </script>
 </body>
 </html>
@@ -405,5 +411,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // データベース接続を閉じる
 $conn->close();
 ?>
-
-
