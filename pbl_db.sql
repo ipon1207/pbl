@@ -40,7 +40,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `attribute`, `email`) VALUES
-(1, 'test', '$2y$10$23g4EdEDqf9o06WWUBmeBefc3iCHLHofJts2EhIVZ.ZX2CJkkkiT2', 0, 'test@test.email'),
+(1, 'test', '$2y$10$23g4EdEDqf9o06WWUBmeBefc3iCHLHofJts2EhIVZ.ZX2CJkkkiT2', 1, 'test@test.email'),
 (2, 'test1', '$2y$10$.0Zyj3eLZzCQZ7scQnzox.k2i5BFm6yf9PwzRusxsx1mTBG47LZhi', 0, 'test1@test1.email.com'),
 (3, 'test2', '$2y$10$i5UTRlBlPBndwjbKKrxbRuXcCw2cp.2.GUmtWuUmTLbGjDReTXJ2i', 1, 'test2@test2.email.com'),
 (4, 'parent1', '$2y$10$jCNwhBR3rwAPB3uEWTx90.abktcsdu82Tx0Ueom9rUiYTxjhW9aGW', 3, 'parent1@parent1.email'),
@@ -96,6 +96,25 @@ INSERT INTO `schedules` (`id`, `username`, `event`, `date`, `time`) VALUES
 (2, 'test', '文化祭', '2024-09-18', '08:00:00'),
 (3, 'test1', '運動会', '2024-07-15', '15:19:00'),
 (4, 'teacher', '面談', '2024-07-09', '18:41:46');
+
+CREATE TABLE `chat` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `time` datetime NOT NULL,
+  `teacher` varchar(50) NOT NULL,
+  `student` varchar(50) NOT NULL,
+  `chat` varchar(216) NOT NULL,
+  `attribute` int(1) NOT NULL, -- 0なら生徒、1なら保護者に
+  `sent_user` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS parents_students (
+    parent_id INT NOT NULL,
+    student_id INT NOT NULL,
+    PRIMARY KEY (parent_id, student_id),
+    FOREIGN KEY (parent_id) REFERENCES accounts(id),
+    FOREIGN KEY (student_id) REFERENCES accounts(id)
+);
 
 --
 -- Indexes for dumped tables
